@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    </head>
+    <body>
+
+        <input type="file" id="fileUpload" value="">
+<input type="button" id="i_submit" value="Submit">
+<br>
+<img src="" width="200" style="display:none;" />
+<br>
+<div id="disp_tmp_path"></div>
+        
+    </body>
+    <script>
+        $(function()
+        {
+            $('#fileUpload').on('change',function ()
+            {
+
+                var filePath = $(this).val();
+                console.log(filePath);
+                 $.ajax({
+                    type: "POST",
+                    url: "/order",
+                    data: {path_give: filePath},
+                    success: function (response) { // 성공하면
+                        if (response["result"] == "success") {
+                            alert("성공하였습니다.");
+
+                        } else {
+                            alert("서버 오류입니다.");
+                        }
+                    }
+                })
+            });
+        });
+    </script>
+</html>

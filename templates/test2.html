@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <title>How to convert image into base64 string jQuery?</title>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+    </head>
+
+    <body>
+
+        <input type="file" id="i_file" value="">
+        <input type="button" id="i_submit" value="Submit">
+        <br>
+        <img src="" width="200" style="display:none;" />
+        <br>
+        <div id="disp_tmp_path"></div>
+
+        <form>
+
+<!--            <input id="testid" type="file" name="image" onchange="encodeImagetoBase64(this)">-->
+
+
+            <input id="testid" type="file">
+            <button type="submit">Submit</button>
+
+            <a class="link" href=""></a>
+
+        </form>
+
+    </body>
+
+    <script type="text/javascript">
+
+        function encodeImagetoBase64(element) {
+
+            var file = element.files[0];
+
+            var reader = new FileReader();
+
+
+            reader.onloadend = function () {
+                alert(reader.result);
+                $.ajax({
+                    type: "POST",
+                    url: "/order",
+                    data: {path_give: reader.result},
+                    success: function (response) { // 성공하면
+                        if (response["result"] == "success") {
+                            alert("성공하였습니다.");
+
+                        } else {
+                            alert("서버 오류입니다.");
+                        }
+                    }
+                })
+
+
+                $(".link").attr("href", reader.result);
+
+                $(".link").text(reader.result);
+
+            }
+
+            reader.readAsDataURL(file);
+
+
+        }
+
+    </script>
+
+</html>
