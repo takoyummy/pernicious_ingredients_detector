@@ -83,18 +83,24 @@ def detect_text(path):
     all_hazard = list(db.project.find({}))
     array = []
 
-    img_path = '../static/' + path_name
-    dic_path = {'path': img_path}
-    array.append(dic_path)
-
     for hazard in all_hazard:
         name = hazard['name']
         desc = hazard['desc']
         dic = {'name': name, 'desc': desc}
         if name in result:
             array.append(dic)
+    array = sorted(array, key=lambda k: len(k['name']), reverse=True)
+    print(len(array))
+    for i in range(0, len(array)):
+        for j in range(i + 1, len(array)):
+            if array[j]['name'] in array[i]['name']:
+                del array[j]
+
     print('최종 결과는')
 
+    img_path = '../static/' + path_name
+    dic_path = {'path': img_path}
+    array.insert(0, dic_path)
 
     return array
 
@@ -111,8 +117,6 @@ def view_orders():
     arrays = detect_text(path)
     print(arrays)
     return jsonify({'result': 'success', 'hazard': arrays})
-
-
 
 
 if __name__ == '__main__':
