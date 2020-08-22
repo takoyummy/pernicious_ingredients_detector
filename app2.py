@@ -50,8 +50,9 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             global path
             path = './static/' + path_name
-            return redirect(url_for('upload_file',
-                                    filename=filename))
+            # return redirect(url_for('upload_file',
+            #                         filename=filename))
+            return render_template('test5.html')
 
 
 def detect_text(path):
@@ -93,6 +94,8 @@ def detect_text(path):
         if name in result:
             array.append(dic)
     print('최종 결과는')
+
+
     return array
 
     if response.error.message:
@@ -108,6 +111,8 @@ def view_orders():
     arrays = detect_text(path)
     print(arrays)
     return jsonify({'result': 'success', 'hazard': arrays})
+
+
 
 
 if __name__ == '__main__':
