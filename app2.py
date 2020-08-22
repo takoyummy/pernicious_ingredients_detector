@@ -45,13 +45,11 @@ def upload_file():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            # print(filename)
             global path_name
             path_name = filename
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             global path
             path = './static/' + path_name
-            # detect_text('./static/' + path_name)
             return redirect(url_for('upload_file',
                                     filename=filename))
 
@@ -75,18 +73,18 @@ def detect_text(path):
     response = client.text_detection(image=image)
     texts = response.text_annotations
     print('Texts:')
+    global result
+    result = ""
 
     for text in texts:
-        global result
         result += text.description
-
-    # find_hazardous(result)
-    print(path)
-    # 상대경로 값으로 static폴더 안의 path 경로를 불러온다.
-    img_path = '../static/' + path_name
 
     all_hazard = list(db.project.find({}))
     array = []
+
+    img_path = '../static/' + path_name
+    dic_path = {'path': img_path}
+    array.append(dic_path)
 
     for hazard in all_hazard:
         name = hazard['name']
@@ -104,24 +102,8 @@ def detect_text(path):
                 response.error.message))
 
 
-# def find_hazardous(result):
-#     print(path)
-#     all_hazard = list(db.project.find({}))
-#     array = []
-#     for hazard in all_hazard:
-#         name = hazard['name']
-#         desc = hazard['desc']
-#         dic = {'name': name, 'desc': desc}
-#         if name in result:
-#             array.append(dic)
-#     print('최종 결과는')
-#     return array
-
-
 @app.route('/result', methods=['GET'])
 def view_orders():
-    # orders = list(db.order.find({}, {'_id': 0}))
-
     print('get실행')
     arrays = detect_text(path)
     print(arrays)

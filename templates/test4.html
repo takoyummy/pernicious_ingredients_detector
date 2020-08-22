@@ -9,7 +9,7 @@
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
@@ -25,7 +25,8 @@
 
 
         }
-        .result{
+
+        .result {
             width: 700px;
             margin: auto;
         }
@@ -40,6 +41,15 @@
 
         }
 
+        #image {
+            background-size: cover;
+            background-position: center;
+            width: 450px;
+            height: 300px;
+            border-radius: 10px;
+        }
+
+
         .align {
             text-align: center;
         }
@@ -49,7 +59,8 @@
     <script>
 
         $(document).ready(function () {
-            $("#orders-box").empty();
+            $("#hazard-box").empty();
+            $("#image").empty();
             showResult();
 
         });
@@ -63,22 +74,26 @@
                 data: {},
                 success: function (response) {
                     let hazard = response['hazard'];
-                    for (let i = 0; i < hazard.length; i++) {
+                    let path = response['hazard'][0]['path'];
+                    for (let i = 1; i < hazard.length; i++) {
                         makeResult(hazard[i]["name"], hazard[i]["desc"]);
 
                     }
-                    alert("유해인자 조회 완료!")
+                    alert('유해성분 조회완료!');
+                    $("#image").attr('src', path);
+
                 }
             })
 
         }
 
         function makeResult(name, desc) {
+
             let tempHtml = ` <tr>
                     <td>${name}</td>
                     <td>${desc}</td>
                 </tr>`;
-            $("#orders-box").append(tempHtml);
+            $("#hazard-box").append(tempHtml);
         }
 
 
@@ -95,12 +110,13 @@
             <br/>
             <br/>
 
-            <div class="img" id="image"></div>
+            <div class="img" id="image2">
+                <img id="image">
+            </div>
             <br>
             <div class="alert alert-dark" role="alert">
-                상품 뒷면의 성분표 사진을 업로딩하시면,<br/>유해인자 포함 여부를 감별해드립니다!
+                상품 뒷면의 성분표 사진을 업로딩하시면,<br/>유해인자 포함 여부를 알려드립니다!
             </div>
-
             <!-- As a heading -->
 
             <div class="upload_sect">
@@ -114,18 +130,18 @@
 
 
         </div>
-                    <div class="result">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">물질명</th>
-                        <th scope="col">정보</th>
-                    </tr>
-                    </thead>
-                    <tbody id="orders-box">
+        <div class="result">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">물질명</th>
+                    <th scope="col">정보</th>
+                </tr>
+                </thead>
+                <tbody id="hazard-box">
 
-                    </tbody>
-                </table>
-            </div>
+                </tbody>
+            </table>
+        </div>
     </body>
 </html>
