@@ -15,6 +15,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Gugi&family=Nanum+Gothic&family=Nanum+Myeongjo&display=swap" rel="stylesheet">
     <style>
         .result {
             width: 700px;
@@ -46,6 +47,10 @@
             border-radius: 10px;
         }
 
+        * {
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+
     </style>
     <script>
 
@@ -53,9 +58,11 @@
             showResult();
 
         });
+
         function goBack() {
-           window.location = '/';
+            window.location = '/';
         }
+
         function showResult() {
 
             $.ajax({
@@ -90,7 +97,10 @@
 
     <body>
         <nav class="navbar navbar-dark bg-dark">
-            <span class="navbar-brand mb-0 h1">유해성분 알림e</span>
+            <div class="mx-auto order-0">
+                <a class="navbar-brand mx-auto" href="#" style="font-family: 'Do Hyeon', sans-serif; font-size: 24px; ">유해성분
+                    알림e</a>
+            </div>
         </nav>
         <div class="wrap">
             <br/>
@@ -103,23 +113,22 @@
             <br/>
 
 
+        </div>
+        <div class="result">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col" width="30%">물질명</th>
+                    <th scope="col">정보</th>
+                </tr>
+                </thead>
+                <tbody id="hazard-box">
+
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="goBack()">처음으로</button>
 
         </div>
-         <div class="result">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col" width="30%">물질명</th>
-                        <th scope="col">정보</th>
-                    </tr>
-                    </thead>
-                    <tbody id="hazard-box">
-
-                    </tbody>
-                </table>
-                <button type="button" class="btn btn-dark" onclick="goBack()">처음으로</button>
-
-            </div>
 
 
     </body>
