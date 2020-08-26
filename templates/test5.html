@@ -97,7 +97,14 @@
 
                     }
                     $("#spin").empty();
-                    alert('유해성분 조회완료!');
+
+
+
+                    if(!hazard[1]){
+                        alert('유해성분이 없습니다.');
+                    }else{
+                        alert('유해성분 조회완료!')
+                    }
 
 
                     $("#image").attr('src', path);
