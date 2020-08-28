@@ -13,9 +13,9 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
 
-<!--    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"-->
-<!--            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"-->
-<!--            crossorigin="anonymous"></script>-->
+    <!--    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"-->
+    <!--            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"-->
+    <!--            crossorigin="anonymous"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
             integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
             crossorigin="anonymous"></script>
@@ -65,6 +65,10 @@
             font-family: 'Nanum Gothic', sans-serif;
         }
 
+        body {
+            background-image:url(../static/Marble-background2.jpg);
+        }
+
     </style>
     <script>
 
@@ -99,10 +103,9 @@
                     $("#spin").empty();
 
 
-
-                    if(!hazard[1]){
+                    if (!hazard[1]) {
                         alert('유해성분이 없습니다.');
-                    }else{
+                    } else {
                         alert('유해성분 조회완료!')
                     }
 
@@ -128,7 +131,7 @@
     <body>
         <nav class="navbar navbar-dark bg-dark">
             <div class="mx-auto order-0">
-                <a class="navbar-brand mx-auto" href="#" style="font-family: 'Do Hyeon', sans-serif; font-size: 24px; ">유해성분
+                <a class="navbar-brand mx-auto" href="/" style="font-family: 'Do Hyeon', sans-serif; font-size: 24px; ">유해성분
                     알림e</a>
             </div>
         </nav>
