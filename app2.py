@@ -54,6 +54,11 @@ def upload_file():
             #                         filename=filename))
             return render_template('test5.html')
 
+@app.route('/path', methods=['GET'])
+def upload_img():
+    return jsonify({'result': 'success', 'path': path})
+
+
 
 def detect_text(path):
     """Detects text in the file."""

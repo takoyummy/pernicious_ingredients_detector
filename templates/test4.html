@@ -63,13 +63,14 @@
             font-family: 'Nanum Gothic', sans-serif;
         }
 
-        body{
-            background-image:url(../static/Marble-background2.jpg);
+        body {
+            background-image: url(../static/Marble-background2.jpg);
         }
-        .upload_sect{
-            background-color:#A4A5A6;
-            margin:auto;
-            padding:10px;
+
+        .upload_sect {
+            background-color: #A4A5A6;
+            margin: auto;
+            padding: 10px;
             border-radius: 10px;
 
         }
@@ -83,6 +84,17 @@
             // showResult();
 
         });
+
+        function PreviewImage() {
+
+            var oFReader = new FileReader();
+            oFReader.readAsDataURL(document.getElementById("ffile").files[0]);
+
+            oFReader.onload = function (oFREvent) {
+                document.getElementById("image").src = oFREvent.target.result;
+            };
+        };
+
 
 
     </script>
@@ -112,7 +124,7 @@
 
             <div class="upload_sect">
                 <form method=post enctype=multipart/form-data>
-                    <input type=file name=file>
+                    <input type=file name=file id="ffile" onchange="PreviewImage();">
                     <input type=submit value=Upload>
                 </form>
             </div>
