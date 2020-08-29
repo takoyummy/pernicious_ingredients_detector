@@ -5,7 +5,7 @@ from werkzeug.utils import secure_filename
 from pymongo import MongoClient
 import time
 
-client = MongoClient('localhost', 27017)
+client = MongoClient('mongodb://test:test@52.78.233.69', 27017)
 db = client.dbproject
 
 UPLOAD_FOLDER = './static'
